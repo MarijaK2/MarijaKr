@@ -1,0 +1,29 @@
+import random
+
+studenti = ['Karlo', 'Ana-Marija', 'Antonio', 'Marko', 'Matea', 'Vice', 'Sara', 'Ivana', 'Ante', 'Ivan Entoni', 'Tonka',
+            'Antonio', 'Mateo', 'Mateo', 'Josip', 'Marko', 'Tino', 'Azer', 'Tomislava', 'Katarina', 'Karlo', 'David',
+            'Ivan', 'Petar', 'Marija', 'Antonio', 'Mario', 'Josip', 'Leonardo', 'Antonio', 'Renato', 'Matej', 'Matej',
+            'Jozo Matej', 'Petar', 'Ivan', 'Stjepan', 'Petar', 'Dražen', 'Zvonimir', 'Marin', 'Antonio', 'Stipe', 'Ana',
+            'Mate', 'Miroslav', 'Karlo', 'Marino', 'Mija', 'Kristijan', 'Ante', 'Ana', 'Iva', 'Mladen', 'Ivan', 'Frano',
+            'Mate', 'Mateo', 'Harun']
+
+ocjene = {}
+ukupno_studenata = len(studenti)
+
+for student in studenti:
+    ocjena = random.randint(1, 5)
+    ocjene[student] = ocjena
+
+broj_ocjena = {}
+
+for ocjena in ocjene.values():
+    broj_ocjena[ocjena] = broj_ocjena.get(ocjena, 0) + 1
+
+broj_proslih = sum(broj for ocjena, broj in broj_ocjena.items() if ocjena > 1)
+postotak_prolaznosti = (broj_proslih / ukupno_studenata) * 100
+
+print("Broj ocjena:")
+for ocjena, broj in broj_ocjena.items():
+    print(f"Ocjena {ocjena}: {broj}")
+
+print(f"\nPostotak prolaznosti: {postotak_prolaznosti}%")
