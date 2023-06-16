@@ -1,0 +1,69 @@
+imena = [
+    "Mario", "Josip", "Ivana", "Mija", "Ivan", "Ante", "Marino", "Ana-Marija",
+    "Frano", "Mladen", "Marko", "Jozo Matej", "Karlo", "Mate", "Katarina",
+    "Tomislava", "Alija", "Sara", "Petar", "Safet", "Matej", "Stjepan", "Ivan",
+    "Antonio", "David", "Ivan Entoni", "Marija", "Mate", "Kristijan", "Antonio",
+    "Ružica", "Petar", "Ana", "Zvonimir", "Matea", "Petar", "Miroslav", "Matea",
+    "Marija", "Marko", "Antonio", "Matej", "Iva", "Leonardo", "Karlo", "Josip",
+    "Ivan", "Vice", "Azer"
+]
+
+prezimena = [
+    "Jonjić", "Ćavar", "Bunoza", "Sabljić", "Luetić", "Šimić", "Rupar", "Bakula",
+    "Vranjković", "Tomić", "Benković", "Lasić", "Rezo", "Penava", "Galić", "Đopa",
+    "Kičin", "Budimir", "Lončar", "Srna", "Knežević", "Marić", "Udovičić",
+    "Jakovljević", "Grubišić", "Bunoza", "Krištić", "Zeljko", "Slišković", "Bebek",
+    "Grgić", "Ilišević", "Šimić", "Milardović", "Tufekčić", "Markić", "Pinjuh",
+    "Bošnjak", "Krištić", "Ćubela", "Mlikota", "Kraljević", "Šimović", "Karačić",
+    "Bagarić", "Jurković", "Živković", "Božić", "Džemić"
+]
+
+bodovi = [
+    100, 100, 100, 90, 80, 75, 60, 60, 55, 55, 55, 50, 50, 50, 50, 50,
+    50, 40, 35, 35, 30, 30, 25, 25, 20, 20, 20, 15, 15, 15, 15, 15,
+    10, 10, 10, 10, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0
+]
+
+ocjene = [
+    5, 5, 5, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    "Nije položio/la", "Nije položio/la", "Nije položio/la", "Nije položio/la",
+    "Nije položio/la", "Nije položio/la", "Nije položio/la", "Nije položio/la",
+    "Nije položio/la", "Nije položio/la", "Nije položio/la", "Nije položio/la",
+    "Nije položio/la", "Nije položio/la", "Nije položio/la", "Nije položio/la"
+]
+
+ucenici = list(zip(imena, prezimena, bodovi))
+polozili = [ucenik for ucenik in ucenici if int(ucenik[2]) > 49]
+for ime, prezime, _ in polozili:
+    print(ime, prezime)
+
+sortirani_pp = sorted(ucenici, key=lambda x: x[1])
+
+rjecnik_ocjena = {}
+
+for bodovi, ocjena in zip(bodovi, ocjene):
+    bodovi = int(bodovi)
+    if bodovi <= 49:
+        rjecnik_ocjena.setdefault("nedovoljan", 0)
+        rjecnik_ocjena["nedovoljan"] += 1
+    elif 50 <= bodovi <= 65:
+        rjecnik_ocjena.setdefault("dovoljan", 0)
+        rjecnik_ocjena["dovoljan"] += 1
+    elif 66 <= bodovi <= 80:
+        rjecnik_ocjena.setdefault("dobar", 0)
+        rjecnik_ocjena["dobar"] += 1
+    elif 81 <= bodovi <= 90:
+        rjecnik_ocjena.setdefault("vrlo dobar", 0)
+        rjecnik_ocjena["vrlo dobar"] += 1
+    elif 91 <= bodovi <= 100:
+        rjecnik_ocjena.setdefault("odličan", 0)
+        rjecnik_ocjena["odličan"] += 1
+
+print("\nSortirani učenici po prezimenima:")
+for ime, prezime, _ in sortirani_pp:
+    print(prezime, ime)
+
+print("\nRječnik ocjena po bodovnom rangu:")
+for rang, broj_ocjena in rjecnik_ocjena.items():
+    print(f"{rang}: {broj_ocjena}")
+
